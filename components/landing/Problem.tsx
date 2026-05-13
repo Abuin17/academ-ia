@@ -1,50 +1,38 @@
-import { Container } from "@/components/Container";
-
-const points = [
-  {
-    n: "01",
-    text: "Los cursos online se abandonan. El 90% no se terminan.",
-  },
-  {
-    n: "02",
-    text: "Los tutoriales de YouTube enseñan botones, no criterio.",
-  },
-  {
-    n: "03",
-    text: "La formación pública gratuita cubre lo básico. No cubre lo que importa: saber cuándo confiar en la IA y cuándo no.",
-  },
+const items = [
+  "Tu hijo usa IA para los deberes. No sabe si lo que le devuelve es verdad.",
+  "Llevas meses entre tutoriales que no terminas y herramientas que cambian cada semana.",
+  "Tu empresa tiene la obligación legal de formar a su equipo en IA desde febrero de 2025. Probablemente nadie lo sabe todavía.",
 ];
 
 export function Problem() {
   return (
-    <section className="py-24 sm:py-32">
-      <Container>
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <p className="eyebrow mb-6">El problema</p>
-            <h2 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
-              Todo el mundo habla de IA. Casi nadie la enseña bien.
-            </h2>
-          </div>
-          <div className="md:col-span-7 md:pt-6">
-            <ul className="space-y-3">
-              {points.map((p) => (
-                <li key={p.n} className="glass-card flex gap-6 rounded-2xl px-6 py-6 sm:px-8">
-                  <span className="font-serif text-2xl text-[color:var(--color-accent)]">
-                    {p.n}
-                  </span>
-                  <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
-                    {p.text}
-                  </p>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-12 font-serif text-2xl leading-snug text-[color:var(--color-ink)] sm:text-3xl">
-              Falta un sitio donde aprender IA de verdad — con personas, con método, con continuidad.
-            </p>
-          </div>
-        </div>
-      </Container>
+    <section className="border-t border-[color:var(--color-line)] py-24 sm:py-32">
+      <div className="container-prose">
+        <p className="eyebrow">El problema</p>
+        <h2 className="mt-6 max-w-3xl font-serif text-3xl leading-[1.1] sm:text-4xl md:text-5xl">
+          Todos tienen acceso a IA. Muy pocos saben qué hacer con ese acceso.
+        </h2>
+
+        <ul className="mt-14 space-y-6 sm:mt-16">
+          {items.map((text, i) => (
+            <li
+              key={text}
+              className="grid grid-cols-[auto_1fr] items-baseline gap-x-6 border-t border-[color:var(--color-line)] pt-6"
+            >
+              <span className="font-serif text-2xl text-[color:var(--color-accent)] sm:text-3xl">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-lg leading-relaxed text-[color:var(--color-ink-soft)] sm:text-xl">
+                {text}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        <p className="mt-16 max-w-2xl font-serif text-2xl leading-snug text-[color:var(--color-ink)] sm:text-3xl">
+          Falta un lugar donde aprenderlo bien. Presencial. Con método. Con continuidad.
+        </p>
+      </div>
     </section>
   );
 }

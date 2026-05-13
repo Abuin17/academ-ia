@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ensureWaitlistTable, sql } from "@/lib/db";
-import { isValidEmail, isValidSegment } from "@/lib/validate";
+import { isValidEmail, normalizeSegment } from "@/lib/validate";
 
 export const runtime = "nodejs";
 
@@ -17,9 +17,6 @@ export async function POST(req: Request) {
   if (!isValidEmail(email)) {
     return NextResponse.json({ error: "Email inválido" }, { status: 400 });
   }
-  if (!isValidSegment(segment)) {
-    return NextResponse.json({ error: "Segmento inválido" }, { status: 400 });
-  }
 
   if (!process.env.DATABASE_URL) {
     return NextResponse.json({ error: "Servicio no disponible" }, { status: 503 });
@@ -29,8 +26,8 @@ export async function POST(req: Request) {
     await ensureWaitlistTable();
     await sql`
       INSERT INTO waitlist (email, segment)
-      VALUES (${email.toLowerCase()}, ${segment})
-      ON CONFLICT (email) DO UPDATE SET segment = EXCLUDED.segment
+      VALUES (${email.toLowerCase()}, ${normalizeSegment(segment)})
+      ON CONFLICT (email) DO NOTHING
     `;
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (err) {
