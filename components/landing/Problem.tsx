@@ -19,22 +19,32 @@ export function Problem() {
           </h2>
         </Reveal>
 
-        <div className="mt-20 grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-0">
+        <div className="mt-20 grid grid-cols-1 gap-14 md:grid-cols-3 md:gap-0">
           {items.map((text, i) => (
             <Reveal key={text} delay={i * 0.12} amount={0.2}>
-              <div className="relative md:px-10 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-[color:var(--rule)]">
+              <div
+                className="relative md:px-10"
+                style={
+                  i > 0
+                    ? { borderLeft: "1px solid var(--rule)" }
+                    : { paddingLeft: 0, paddingRight: "2.5rem" }
+                }
+              >
                 <p
                   aria-hidden
                   className="font-serif"
                   style={{
                     fontSize: "4rem",
                     lineHeight: 1,
-                    color: "rgba(26, 26, 26, 0.08)",
+                    color: "rgba(26, 26, 26, 0.06)",
                   }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <p className="mt-6 text-lg leading-relaxed" style={{ color: "var(--text)" }}>
+                <p
+                  className="mt-6 text-lg leading-relaxed"
+                  style={{ color: "var(--text)" }}
+                >
                   {text}
                 </p>
               </div>
@@ -46,7 +56,7 @@ export function Problem() {
           <p
             className="mx-auto mt-24 max-w-3xl text-center font-serif italic"
             style={{
-              fontSize: "clamp(1.4rem, 2vw, 1.9rem)",
+              fontSize: "clamp(1.4rem, 2.2vw, 2rem)",
               lineHeight: 1.3,
               color: "var(--text-soft)",
             }}

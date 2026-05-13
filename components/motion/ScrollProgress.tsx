@@ -1,20 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function ScrollProgress() {
   const [pct, setPct] = useState(0);
+  const rafRef = useRef(0);
 
   useEffect(() => {
-    function onScroll() {
+    function update() {
       const h = document.documentElement;
       const total = h.scrollHeight - h.clientHeight;
       const current = h.scrollTop;
       setPct(total > 0 ? (current / total) * 100 : 0);
+      rafRef.current = 0;
     }
-    onScroll();
+    function onScroll() {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(update);
+    }
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (
@@ -35,7 +44,8 @@ export function ScrollProgress() {
           width: `${pct}%`,
           height: "100%",
           background: "var(--color-accent)",
-          transition: "width 100ms linear",
+          opacity: 0.65,
+          transition: "width 50ms linear",
         }}
       />
     </div>

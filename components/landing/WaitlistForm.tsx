@@ -16,10 +16,12 @@ export function WaitlistForm({
   variant = "compact",
   submitText = "Apuntarme",
   source = "default",
+  wrap = true,
 }: {
   variant?: Variant;
   submitText?: string;
   source?: string;
+  wrap?: boolean;
 }) {
   const reduced = useReducedMotion();
   const [email, setEmail] = useState("");
@@ -54,13 +56,16 @@ export function WaitlistForm({
     }
   }
 
+  const wrapperClass = wrap ? "glass-primary breathe" : "";
+  const wrapperPad = wrap ? "p-6 sm:p-8" : "";
+
   if (status === "ok") {
     return (
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 8 }}
         animate={reduced ? undefined : { opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="card p-7"
+        className={`${wrapperClass} ${wrapperPad}`}
       >
         <p className="font-serif text-2xl">Te avisaremos.</p>
         <p className="lede mt-2 text-sm">
@@ -71,7 +76,7 @@ export function WaitlistForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4" noValidate>
+    <form onSubmit={onSubmit} className={`${wrapperClass} ${wrapperPad} space-y-4`} noValidate>
       {!compact && (
         <fieldset className="flex flex-wrap gap-2">
           <legend className="sr-only">Soy</legend>

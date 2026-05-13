@@ -19,7 +19,7 @@ export function RevealWords({
   className,
   italicWords = [],
   accentWords = [],
-  staggerDelay = 0.05,
+  staggerDelay = 0.06,
   startDelay = 0,
   immediate = false,
 }: Props) {
@@ -28,18 +28,16 @@ export function RevealWords({
   const italic = new Set(italicWords.map((w) => w.toLowerCase()));
   const accent = new Set(accentWords.map((w) => w.toLowerCase()));
 
-  const trigger = immediate ? "animate" : "whileInView";
-  const viewportProps = immediate
-    ? {}
-    : { viewport: { once: true, amount: 0.2 } };
-
   return (
     <motion.span
       className={className}
       initial={reduced ? false : "hidden"}
       {...(immediate
         ? { animate: reduced ? undefined : "show" }
-        : { whileInView: reduced ? undefined : "show", ...viewportProps })}
+        : {
+            whileInView: reduced ? undefined : "show",
+            viewport: { once: true, amount: 0.15 },
+          })}
       transition={{
         staggerChildren: reduced ? 0 : staggerDelay,
         delayChildren: reduced ? 0 : startDelay,
@@ -51,30 +49,28 @@ export function RevealWords({
         const isItalic = italic.has(clean);
         const isAccent = accent.has(clean);
         return (
-          <motion.span
-            key={i}
-            className="inline-block"
-            style={{
-              fontStyle: isItalic ? "italic" : undefined,
-              color: isAccent ? "var(--color-accent)" : undefined,
-              marginRight: "0.25em",
-              whiteSpace: "pre",
-            }}
-            variants={
-              reduced
-                ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
-                : {
-                    hidden: { opacity: 0, y: 30 },
-                    show: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.7, ease: EASE },
-                    },
-                  }
-            }
-          >
-            {word}
-          </motion.span>
+          <span className="word-mask" key={i}>
+            <motion.span
+              style={{
+                fontStyle: isItalic ? "italic" : undefined,
+                color: isAccent ? "var(--color-accent)" : undefined,
+              }}
+              variants={
+                reduced
+                  ? { hidden: { y: 0, opacity: 1 }, show: { y: 0, opacity: 1 } }
+                  : {
+                      hidden: { y: "110%", opacity: 0 },
+                      show: {
+                        y: "0%",
+                        opacity: 1,
+                        transition: { duration: 0.7, ease: EASE },
+                      },
+                    }
+              }
+            >
+              {word}
+            </motion.span>
+          </span>
         );
       })}
     </motion.span>

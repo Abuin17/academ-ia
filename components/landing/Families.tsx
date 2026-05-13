@@ -11,7 +11,8 @@ const blocks = [
     tag: "13 – 17 años",
     title:
       "La mayoría de sus compañeros va a poner «uso IA» en el CV. Él va a poder demostrar qué construyó con ella.",
-    description: "Portfolio acumulativo. Especialización por interés. Ventaja real, no percibida.",
+    description:
+      "Portfolio acumulativo. Especialización por interés. Ventaja real, no percibida.",
     details: ["Clases semanales", "Grupos reducidos", "Tres niveles"],
   },
 ];
@@ -31,18 +32,31 @@ export function Families() {
 
         <div className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-2">
           {blocks.map((b, i) => (
-            <Reveal key={b.tag} delay={i * 0.15} y={40} duration={0.7}>
-              <article className="card flex h-full flex-col" style={{ padding: "2.5rem" }}>
-                <span className="pill self-start">{b.tag}</span>
-                <h3 className="mt-7 font-serif" style={{ fontSize: "1.85rem", lineHeight: 1.15 }}>
+            <Reveal key={b.tag} delay={i * 0.18} y={50} duration={0.75}>
+              <article
+                className="glass-secondary flex h-full flex-col"
+                style={{ padding: "2.5rem" }}
+              >
+                <span className="pill pill-accent self-start">{b.tag}</span>
+                <h3
+                  className="mt-7 font-serif"
+                  style={{ fontSize: "clamp(1.6rem, 2vw, 1.95rem)", lineHeight: 1.15 }}
+                >
                   {b.title}
                 </h3>
-                <p className="lede mt-6" style={{ color: "var(--text-soft)" }}>
+                <p
+                  className="mt-6 leading-relaxed"
+                  style={{ color: "var(--text-soft)", fontSize: "1.05rem" }}
+                >
                   {b.description}
                 </p>
-                <ul className="mt-auto pt-10 space-y-2">
+                <ul className="mt-auto space-y-2 pt-12">
                   {b.details.map((d) => (
-                    <li key={d} className="flex items-baseline gap-3 text-sm" style={{ color: "var(--text-soft)" }}>
+                    <li
+                      key={d}
+                      className="flex items-baseline gap-3 text-sm"
+                      style={{ color: "var(--text-soft)" }}
+                    >
                       <span
                         aria-hidden
                         style={{

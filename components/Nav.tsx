@@ -19,7 +19,9 @@ export function Nav() {
   }, []);
 
   useEffect(() => {
-    const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section-theme]"));
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-section-theme]")
+    );
     if (sections.length === 0) return;
 
     const obs = new IntersectionObserver(
@@ -45,16 +47,18 @@ export function Nav() {
   const isDark = theme === "dark";
   const navBg = scrolled
     ? isDark
-      ? "rgba(10,10,10,0.85)"
-      : "rgba(250,250,248,0.88)"
+      ? "rgba(11,11,15,0.8)"
+      : "rgba(247,246,243,0.8)"
     : "transparent";
   const navBorder = scrolled
     ? isDark
       ? "rgba(255,255,255,0.06)"
       : "rgba(0,0,0,0.06)"
     : "transparent";
-  const textColor = isDark ? "#F5F5F3" : "#1A1A1A";
-  const softColor = isDark ? "rgba(245,245,243,0.6)" : "#6B6B6B";
+  const textColor = isDark ? "#F0EDE6" : "#1A1A1A";
+  const softColor = isDark
+    ? "rgba(240,237,230,0.55)"
+    : "#8A8A82";
 
   return (
     <header
@@ -65,8 +69,8 @@ export function Nav() {
         right: 0,
         zIndex: 50,
         background: navBg,
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+        backdropFilter: scrolled ? "blur(24px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(24px)" : "none",
         borderBottom: `1px solid ${navBorder}`,
         transition: "background-color 0.3s ease, border-color 0.3s ease",
       }}
@@ -76,10 +80,19 @@ export function Nav() {
           className="flex items-center justify-between"
           style={{ height: 64, color: textColor }}
         >
-          <Link href="/" style={{ color: textColor }} className="font-serif text-xl tracking-tight sm:text-2xl">
+          <Link
+            href="/"
+            style={{
+              color: textColor,
+              fontFamily: "var(--font-serif)",
+              fontSize: "1.35rem",
+              letterSpacing: "-0.02em",
+              transition: "color 0.3s ease",
+            }}
+          >
             Academia IA
           </Link>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-7">
             <a
               href="#lista"
               className="hidden sm:inline-flex"
@@ -99,20 +112,7 @@ export function Nav() {
             </a>
             <a
               href="#lista"
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: "0.8rem",
-                fontWeight: 500,
-                padding: "0.55rem 1rem",
-                borderRadius: 6,
-                background: "var(--color-accent)",
-                color: "#FFFFFF",
-                transition: "background-color 0.25s ease",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "var(--color-accent-hover)")
-              }
-              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-accent)")}
+              className="btn-outline"
             >
               Apuntarme
             </a>

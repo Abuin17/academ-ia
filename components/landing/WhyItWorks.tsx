@@ -17,21 +17,21 @@ export function WhyItWorks() {
               Las herramientas de IA cambian cada tres meses.
             </p>
           </Reveal>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.25}>
             <p
-              className="mt-4 font-serif italic"
+              className="mt-5 font-serif italic"
               style={{
                 fontSize: "clamp(2.4rem, 5vw, 4.25rem)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.025em",
-                color: "var(--text-soft)",
+                color: "var(--color-accent)",
               }}
             >
               La capacidad de evaluarlas, no.
             </p>
           </Reveal>
-          <Reveal delay={0.5}>
-            <p className="lede mx-auto mt-12 max-w-xl">
+          <Reveal delay={0.55}>
+            <p className="lede mx-auto mt-14 max-w-xl">
               Enseñamos a pensar con IA, no a usar herramientas concretas. Cuando cambien — y
               cambiarán — nuestros alumnos ya sabrán qué hacer.
             </p>

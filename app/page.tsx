@@ -1,4 +1,5 @@
 import { Nav } from "@/components/Nav";
+import { CursorGlow } from "@/components/motion/CursorGlow";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Closing } from "@/components/landing/Closing";
 import { Families } from "@/components/landing/Families";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <ScrollProgress />
+      <CursorGlow />
       <Nav />
       <main>
         <Hero />
