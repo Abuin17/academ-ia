@@ -1,3 +1,4 @@
+import { Nav } from "@/components/Nav";
 import { ComingSoon } from "@/components/landing/ComingSoon";
 import { Different } from "@/components/landing/Different";
 import { Families } from "@/components/landing/Families";
@@ -9,15 +10,18 @@ import { Professionals } from "@/components/landing/Professionals";
 
 export default function HomePage() {
   return (
-    <main>
-      <Hero />
-      <Problem />
-      <Families />
-      <Professionals />
-      <Different />
-      <HowItWorks />
-      <ComingSoon />
-      <Footer />
-    </main>
+    <>
+      <Nav />
+      <main>
+        <Hero />
+        <Problem />
+        <Families />
+        <Professionals />
+        <Different />
+        <HowItWorks />
+        <ComingSoon />
+        <Footer />
+      </main>
+    </>
   );
 }

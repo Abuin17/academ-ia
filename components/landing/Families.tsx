@@ -27,42 +27,40 @@ const cards = [
 
 export function Families() {
   return (
-    <section
-      id="familias"
-      className="border-b border-[color:var(--color-line)] bg-white py-24 sm:py-32"
-    >
+    <section id="familias" className="py-24 sm:py-32">
       <Container>
-        <div className="mb-14 max-w-2xl">
-          <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
-            Para familias
-          </p>
-          <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+        <div className="mb-16 max-w-2xl">
+          <p className="eyebrow mb-6">Para familias</p>
+          <h2 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
             Que tu hijo no aprenda IA solo en YouTube.
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {cards.map((card) => (
             <article
               key={card.title}
-              className="flex flex-col border border-[color:var(--color-line)] bg-[color:var(--color-paper)] p-8 sm:p-10"
+              className="glass-card flex flex-col rounded-2xl p-10 sm:p-12"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent)]">
+              <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)]">
                 {card.age}
               </p>
-              <h3 className="mt-2 font-serif text-2xl sm:text-3xl">{card.title}</h3>
-              <p className="mt-6 font-serif text-xl leading-snug text-[color:var(--color-ink)] sm:text-2xl">
+              <h3 className="mt-3 font-serif text-3xl sm:text-4xl">{card.title}</h3>
+              <p className="mt-8 font-serif text-xl leading-snug text-[color:var(--color-ink)] sm:text-2xl">
                 {card.headline}
               </p>
-              <ul className="mt-8 space-y-3 text-[color:var(--color-ink-soft)]">
+              <ul className="mt-10 space-y-4 text-[color:var(--color-ink-soft)]">
                 {card.bullets.map((b) => (
                   <li key={b} className="flex gap-3 text-base leading-relaxed">
-                    <span aria-hidden className="mt-2 inline-block h-px w-4 bg-[color:var(--color-accent)]" />
+                    <span
+                      aria-hidden
+                      className="mt-3 inline-block h-px w-5 flex-shrink-0 bg-[color:var(--color-accent)]"
+                    />
                     <span>{b}</span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-10 border-t border-[color:var(--color-line)] pt-6 text-sm leading-relaxed text-[color:var(--color-muted)]">
+              <p className="mt-12 border-t border-[color:var(--color-border)] pt-6 text-sm leading-relaxed text-[color:var(--color-muted)]">
                 {card.format}
               </p>
             </article>

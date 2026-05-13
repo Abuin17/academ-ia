@@ -1,18 +1,17 @@
 import type { ReactNode } from "react";
 
-export function Prose({ children, tone = "default" }: { children: ReactNode; tone?: "default" | "inverse" }) {
-  const color =
-    tone === "inverse"
-      ? "text-[color:var(--color-paper)]/90"
-      : "text-[color:var(--color-ink-soft)]";
+export function Prose({ children }: { children: ReactNode }) {
   return (
-    <div className={`space-y-5 text-base leading-relaxed sm:text-lg ${color}`}>{children}</div>
+    <div className="space-y-5 text-base font-light leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
+      {children}
+    </div>
   );
 }
 
-export function Lede({ children, tone = "default" }: { children: ReactNode; tone?: "default" | "inverse" }) {
-  const color = tone === "inverse" ? "text-[color:var(--color-paper)]" : "text-[color:var(--color-ink)]";
+export function Lede({ children }: { children: ReactNode }) {
   return (
-    <p className={`font-serif text-2xl leading-snug sm:text-3xl ${color}`}>{children}</p>
+    <p className="font-serif text-3xl leading-snug text-[color:var(--color-ink)] sm:text-4xl">
+      {children}
+    </p>
   );
 }

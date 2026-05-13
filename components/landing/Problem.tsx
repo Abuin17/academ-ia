@@ -17,29 +17,29 @@ const points = [
 
 export function Problem() {
   return (
-    <section className="border-b border-[color:var(--color-line)] py-24 sm:py-32">
+    <section className="py-24 sm:py-32">
       <Container>
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+        <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
-              El problema
-            </p>
-            <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">
+            <p className="eyebrow mb-6">El problema</p>
+            <h2 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
               Todo el mundo habla de IA. Casi nadie la enseña bien.
             </h2>
           </div>
           <div className="md:col-span-7 md:pt-6">
-            <ul className="divide-y divide-[color:var(--color-line)]">
+            <ul className="space-y-3">
               {points.map((p) => (
-                <li key={p.n} className="flex gap-6 py-6">
-                  <span className="font-serif text-xl text-[color:var(--color-accent)]">{p.n}</span>
+                <li key={p.n} className="glass-card flex gap-6 rounded-2xl px-6 py-6 sm:px-8">
+                  <span className="font-serif text-2xl text-[color:var(--color-accent)]">
+                    {p.n}
+                  </span>
                   <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
                     {p.text}
                   </p>
                 </li>
               ))}
             </ul>
-            <p className="mt-10 font-serif text-xl leading-snug text-[color:var(--color-ink)] sm:text-2xl">
+            <p className="mt-12 font-serif text-2xl leading-snug text-[color:var(--color-ink)] sm:text-3xl">
               Falta un sitio donde aprender IA de verdad — con personas, con método, con continuidad.
             </p>
           </div>

@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { Nav } from "@/components/Nav";
 import { Lede, Prose } from "@/components/pitch/Prose";
 import { Section } from "@/components/pitch/Section";
 
@@ -192,352 +193,343 @@ const nextSteps = [
 
 export default function PitchPage() {
   return (
-    <main className="bg-[color:var(--color-paper)]">
-      <header className="border-b border-[color:var(--color-line)] py-12">
-        <Container>
-          <div className="flex items-center justify-between">
-            <p className="font-serif text-xl">Academia IA</p>
-            <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
-              Pitch confidencial · Cofundador
-            </p>
-          </div>
-        </Container>
-      </header>
+    <>
+      <Nav variant="pitch" />
+      <main>
+        <section className="py-20 sm:py-28">
+          <Container>
+            <p className="eyebrow">Pitch confidencial · Cofundador</p>
+            <h1 className="mt-6 max-w-4xl font-serif text-5xl leading-[1.02] sm:text-6xl md:text-7xl">
+              Una red de academias de <span className="text-[color:var(--color-accent)]">IA</span> para España.
+            </h1>
+          </Container>
+        </section>
 
-      <Section number="01" eyebrow="La tesis" title="La IA es presente. La formación seria todavía no.">
-        <Lede>
-          La IA ya no es tecnología del futuro — es una herramienta del presente que la mayoría
-          de la gente usa mal, usa con miedo, o no usa. No existe ningún sitio en España donde un
-          niño, un adolescente o un profesional puedan aprender a razonar y trabajar con IA de
-          forma seria, presencial y continuada.
-        </Lede>
-        <ul className="mt-10 divide-y divide-[color:var(--color-line)] border-y border-[color:var(--color-line)]">
-          {[
-            "No existe ninguna academia presencial recurrente de IA para público general en España.",
-            "El segmento adolescente (13–17) está completamente vacío.",
-            "El AI Act obliga a todas las empresas europeas a formar a su personal en IA desde febrero 2025 (sanciones hasta 7% facturación, AESIA supervisa desde agosto 2026).",
-          ].map((dato, i) => (
-            <li key={dato} className="flex gap-6 py-5">
-              <span className="font-serif text-lg text-[color:var(--color-accent)]">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
-                {dato}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section
-        number="02"
-        eyebrow="El mercado"
-        title="Quién hace qué y dónde está el hueco."
-        tone="white"
-      >
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-sm sm:text-base">
-            <thead>
-              <tr className="border-b border-[color:var(--color-ink)]">
-                <th className="py-3 pr-4 font-sans text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
-                  Categoría
-                </th>
-                <th className="py-3 pr-4 font-sans text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
-                  Qué hacen
-                </th>
-                <th className="py-3 font-sans text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
-                  Qué falta
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {competitors.map((c) => (
-                <tr key={c.cat} className="border-b border-[color:var(--color-line)] align-top">
-                  <td className="py-5 pr-4 font-serif text-base sm:text-lg">{c.cat}</td>
-                  <td className="py-5 pr-4 text-[color:var(--color-ink-soft)]">{c.who}</td>
-                  <td className="py-5 text-[color:var(--color-ink-soft)]">{c.miss}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
-
-      <Section
-        number="03"
-        eyebrow="Tres segmentos"
-        title="Tres demandas distintas. Una sola operación."
-      >
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {segments.map((s) => (
-            <article
-              key={s.title}
-              className="flex flex-col border border-[color:var(--color-line)] bg-white p-6"
-            >
-              <h3 className="font-serif text-xl">{s.title}</h3>
-              <dl className="mt-6 space-y-4 text-sm leading-relaxed">
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent)]">
-                    Oportunidad
-                  </dt>
-                  <dd className="mt-1 text-[color:var(--color-ink-soft)]">{s.opp}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent)]">
-                    Competencia
-                  </dt>
-                  <dd className="mt-1 text-[color:var(--color-ink-soft)]">{s.comp}</dd>
-                </div>
-                <div>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent)]">
-                    Riesgo
-                  </dt>
-                  <dd className="mt-1 text-[color:var(--color-ink-soft)]">{s.risk}</dd>
-                </div>
-              </dl>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        number="04"
-        eyebrow="La propuesta"
-        title="Una red de academias presenciales de IA."
-        tone="white"
-      >
-        <Prose>
-          <p>
-            Entidad nueva e independiente. Posicionamiento explícito: enseñar a razonar con IA,
-            no a pulsar botones. Formato presencial recurrente con cuota mensual y progresión por
-            niveles — análogo al modelo de academia de idiomas, no al curso intensivo.
-          </p>
-          <p>
-            Currículo en tres capas: lo que no cambia (pensamiento crítico, ética, evaluación
-            de fuentes), lo que evoluciona (cómo funciona la IA y sus límites) y lo que se
-            actualiza cada trimestre (herramientas concretas y flujos de trabajo).
-          </p>
-          <p>
-            Una sola operación sirve a tres segmentos con economías compartidas: instalaciones,
-            marca, método, instructores. Tres demandas, una academia.
-          </p>
-        </Prose>
-      </Section>
-
-      <Section
-        number="05"
-        eyebrow="Propuesta de valor"
-        title="Una frase por segmento. Y por qué."
-      >
-        <ol className="space-y-8">
-          {valueBySegment.map((v) => (
-            <li key={v.who} className="border-t border-[color:var(--color-line)] pt-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent)]">
-                {v.who}
-              </p>
-              <Lede>{v.one}</Lede>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-[color:var(--color-ink-soft)]">
-                {v.detail}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section
-        number="06"
-        eyebrow="Estrategia de entrada"
-        title="B2B primero. Familias en paralelo. Academia al final."
-        tone="white"
-      >
-        <ol className="space-y-6">
-          {entryPhases.map((p) => (
-            <li key={p.title} className="grid grid-cols-1 gap-4 border-l-2 border-[color:var(--color-accent)] pl-6 md:grid-cols-4">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
-                  {p.months}
+        <Section number="01" eyebrow="La tesis" title="La IA es presente. La formación seria todavía no.">
+          <Lede>
+            La IA ya no es tecnología del futuro — es una herramienta del presente que la mayoría
+            de la gente usa mal, usa con miedo, o no usa. No existe ningún sitio en España donde un
+            niño, un adolescente o un profesional puedan aprender a razonar y trabajar con IA de
+            forma seria, presencial y continuada.
+          </Lede>
+          <ul className="mt-12 space-y-3">
+            {[
+              "No existe ninguna academia presencial recurrente de IA para público general en España.",
+              "El segmento adolescente (13–17) está completamente vacío.",
+              "El AI Act obliga a todas las empresas europeas a formar a su personal en IA desde febrero 2025 (sanciones hasta 7% facturación, AESIA supervisa desde agosto 2026).",
+            ].map((dato, i) => (
+              <li key={dato} className="glass-card flex gap-6 rounded-2xl px-6 py-6 sm:px-8">
+                <span className="font-serif text-2xl text-[color:var(--color-accent)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
+                  {dato}
                 </p>
-                <h3 className="mt-2 font-serif text-2xl">{p.title}</h3>
-              </div>
-              <p className="md:col-span-3 text-base leading-relaxed text-[color:var(--color-ink-soft)]">
-                {p.body}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section
-        number="07"
-        eyebrow="Diferenciación"
-        title="Lo que no ofrece nadie más en formato B2B presencial."
-      >
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left text-sm sm:text-base">
-            <thead>
-              <tr className="border-b border-[color:var(--color-ink)]">
-                <th className="py-3 pr-4 font-sans text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
-                  Atributo
-                </th>
-                <th className="py-3 pr-4 font-sans text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent)]">
-                  Nosotros
-                </th>
-                <th className="py-3 font-sans text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
-                  Competencia típica
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {diffRows.map((r) => (
-                <tr key={r.feat} className="border-b border-[color:var(--color-line)]">
-                  <td className="py-4 pr-4 font-serif text-base sm:text-lg">{r.feat}</td>
-                  <td className="py-4 pr-4 text-[color:var(--color-ink)]">{r.us}</td>
-                  <td className="py-4 text-[color:var(--color-ink-soft)]">{r.others}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
-
-      <Section
-        number="08"
-        eyebrow="Los números"
-        title="Unit economics Granada."
-        tone="ink"
-      >
-        <dl className="grid grid-cols-1 gap-6 border-y border-white/10 py-8 md:grid-cols-3">
-          {economics.map((e) => (
-            <div key={e.label}>
-              <dt className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent-soft)]">
-                {e.label}
-              </dt>
-              <dd className="mt-2 font-serif text-3xl text-[color:var(--color-paper)] sm:text-4xl">
-                {e.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
-
-        <div className="mt-12">
-          <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent-soft)]">
-            Escenarios
-          </p>
-          <ul className="mt-4 divide-y divide-white/10">
-            {scenarios.map((s) => (
-              <li key={s.name} className="grid grid-cols-1 gap-2 py-5 md:grid-cols-3">
-                <p className="font-serif text-xl text-[color:var(--color-paper)]">{s.name}</p>
-                <p className="text-[color:var(--color-paper)]/80">{s.students}</p>
-                <p className="text-[color:var(--color-paper)]/80">{s.outcome}</p>
               </li>
             ))}
           </ul>
-        </div>
-      </Section>
+        </Section>
 
-      <Section
-        number="09"
-        eyebrow="Modelo de expansión"
-        title="Piloto, consolidación, escala."
-        tone="white"
-      >
-        <ol className="space-y-6">
-          {expansion.map((e) => (
-            <li key={e.phase} className="grid grid-cols-1 gap-4 border-t border-[color:var(--color-line)] pt-6 md:grid-cols-4">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
-                  {e.when}
-                </p>
-                <h3 className="mt-2 font-serif text-2xl">{e.phase}</h3>
-              </div>
-              <p className="md:col-span-3 text-base leading-relaxed text-[color:var(--color-ink-soft)]">
-                {e.what}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section
-        number="10"
-        eyebrow="Por qué juntos"
-        title="Producto y operación. Ejecución y red."
-      >
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {team.map((m) => (
-            <article
-              key={m.who}
-              className="flex flex-col border border-[color:var(--color-line)] bg-white p-8"
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-accent)]">
-                {m.role}
-              </p>
-              <h3 className="mt-2 font-serif text-2xl">{m.who}</h3>
-              <ul className="mt-6 space-y-3 text-base leading-relaxed text-[color:var(--color-ink-soft)]">
-                {m.items.map((it) => (
-                  <li key={it} className="flex gap-3">
-                    <span aria-hidden className="mt-2 inline-block h-px w-4 bg-[color:var(--color-accent)]" />
-                    <span>{it}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        number="11"
-        eyebrow="Lo que no sabemos todavía"
-        title="Cuatro preguntas honestas."
-        tone="white"
-      >
-        <ol className="space-y-6">
-          {unknowns.map((u, i) => (
-            <li key={u} className="flex gap-6 border-t border-[color:var(--color-line)] pt-6">
-              <span className="font-serif text-xl text-[color:var(--color-accent)]">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
-                {u}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section
-        number="12"
-        eyebrow="Próximo paso"
-        title="Cuatro semanas para una decisión informada."
-        tone="ink"
-      >
-        <ol className="divide-y divide-white/10">
-          {nextSteps.map((s) => (
-            <li key={s.when} className="grid grid-cols-1 gap-4 py-6 md:grid-cols-4">
-              <p className="font-serif text-xl text-[color:var(--color-paper)]">{s.when}</p>
-              <p className="md:col-span-3 text-base leading-relaxed text-[color:var(--color-paper)]/85">
-                {s.what}
-              </p>
-            </li>
-          ))}
-        </ol>
-        <p className="mt-12 max-w-2xl text-[color:var(--color-paper)]/80">
-          Inversión total para la decisión: 500 € de taller piloto + tiempo de los dos. Resultado:
-          datos reales para decidir si seguimos, pivotamos o paramos.
-        </p>
-      </Section>
-
-      <footer className="py-12">
-        <Container>
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <p className="font-serif text-xl">Academia IA</p>
-            <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-muted)]">
-              Documento confidencial · Mayo 2026
-            </p>
+        <Section
+          number="02"
+          eyebrow="El mercado"
+          title="Quién hace qué y dónde está el hueco."
+        >
+          <div className="glass rounded-2xl p-2 sm:p-4">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-left text-sm sm:text-base">
+                <thead>
+                  <tr className="border-b border-[color:var(--color-border-strong)]">
+                    <th className="p-4 eyebrow">Categoría</th>
+                    <th className="p-4 eyebrow">Qué hacen</th>
+                    <th className="p-4 eyebrow">Qué falta</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {competitors.map((c) => (
+                    <tr key={c.cat} className="border-b border-[color:var(--color-border)] align-top last:border-0">
+                      <td className="p-4 font-serif text-lg sm:text-xl">{c.cat}</td>
+                      <td className="p-4 text-[color:var(--color-ink-soft)]">{c.who}</td>
+                      <td className="p-4 text-[color:var(--color-ink-soft)]">{c.miss}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </Container>
-      </footer>
-    </main>
+        </Section>
+
+        <Section
+          number="03"
+          eyebrow="Tres segmentos"
+          title="Tres demandas distintas. Una sola operación."
+        >
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {segments.map((s) => (
+              <article key={s.title} className="glass-card flex flex-col rounded-2xl p-8">
+                <h3 className="font-serif text-2xl">{s.title}</h3>
+                <dl className="mt-6 space-y-5 text-sm leading-relaxed">
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)]">
+                      Oportunidad
+                    </dt>
+                    <dd className="mt-2 text-[color:var(--color-ink-soft)]">{s.opp}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)]">
+                      Competencia
+                    </dt>
+                    <dd className="mt-2 text-[color:var(--color-ink-soft)]">{s.comp}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)]">
+                      Riesgo
+                    </dt>
+                    <dd className="mt-2 text-[color:var(--color-ink-soft)]">{s.risk}</dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          number="04"
+          eyebrow="La propuesta"
+          title="Una red de academias presenciales de IA."
+        >
+          <Prose>
+            <p>
+              Entidad nueva e independiente. Posicionamiento explícito: enseñar a razonar con IA,
+              no a pulsar botones. Formato presencial recurrente con cuota mensual y progresión por
+              niveles — análogo al modelo de academia de idiomas, no al curso intensivo.
+            </p>
+            <p>
+              Currículo en tres capas: lo que no cambia (pensamiento crítico, ética, evaluación
+              de fuentes), lo que evoluciona (cómo funciona la IA y sus límites) y lo que se
+              actualiza cada trimestre (herramientas concretas y flujos de trabajo).
+            </p>
+            <p>
+              Una sola operación sirve a tres segmentos con economías compartidas: instalaciones,
+              marca, método, instructores. Tres demandas, una academia.
+            </p>
+          </Prose>
+        </Section>
+
+        <Section
+          number="05"
+          eyebrow="Propuesta de valor"
+          title="Una frase por segmento. Y por qué."
+        >
+          <ol className="space-y-6">
+            {valueBySegment.map((v) => (
+              <li key={v.who} className="glass-card rounded-2xl p-8">
+                <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)]">
+                  {v.who}
+                </p>
+                <p className="mt-3 font-serif text-2xl leading-snug text-[color:var(--color-ink)] sm:text-3xl">
+                  {v.one}
+                </p>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-[color:var(--color-ink-soft)]">
+                  {v.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section
+          number="06"
+          eyebrow="Estrategia de entrada"
+          title="B2B primero. Familias en paralelo. Academia al final."
+        >
+          <ol className="space-y-6">
+            {entryPhases.map((p) => (
+              <li
+                key={p.title}
+                className="glass-card grid grid-cols-1 gap-4 rounded-2xl border-l-2 border-l-[color:var(--color-accent-border)] p-8 md:grid-cols-4"
+              >
+                <div>
+                  <p className="eyebrow">{p.months}</p>
+                  <h3 className="mt-3 font-serif text-2xl">{p.title}</h3>
+                </div>
+                <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] md:col-span-3">
+                  {p.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section
+          number="07"
+          eyebrow="Diferenciación"
+          title="Lo que no ofrece nadie más en formato B2B presencial."
+        >
+          <div className="glass rounded-2xl p-2 sm:p-4">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-left text-sm sm:text-base">
+                <thead>
+                  <tr className="border-b border-[color:var(--color-border-strong)]">
+                    <th className="p-4 eyebrow">Atributo</th>
+                    <th className="p-4 eyebrow" style={{ color: "var(--color-accent)" }}>
+                      Nosotros
+                    </th>
+                    <th className="p-4 eyebrow">Competencia típica</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {diffRows.map((r) => (
+                    <tr key={r.feat} className="border-b border-[color:var(--color-border)] last:border-0">
+                      <td className="p-4 font-serif text-lg">{r.feat}</td>
+                      <td className="p-4 text-[color:var(--color-ink)]">{r.us}</td>
+                      <td className="p-4 text-[color:var(--color-ink-soft)]">{r.others}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </Section>
+
+        <Section number="08" eyebrow="Los números" title="Unit economics Granada.">
+          <div className="glass-strong rounded-2xl p-8 sm:p-10">
+            <dl className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {economics.map((e) => (
+                <div key={e.label}>
+                  <dt className="eyebrow" style={{ color: "var(--color-accent)" }}>
+                    {e.label}
+                  </dt>
+                  <dd className="mt-3 font-serif text-3xl text-[color:var(--color-ink)] sm:text-4xl">
+                    {e.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="mt-10">
+            <p className="eyebrow" style={{ color: "var(--color-accent)" }}>Escenarios</p>
+            <ul className="mt-6 space-y-3">
+              {scenarios.map((s) => (
+                <li
+                  key={s.name}
+                  className="glass-card grid grid-cols-1 gap-2 rounded-2xl p-6 md:grid-cols-3"
+                >
+                  <p className="font-serif text-2xl text-[color:var(--color-ink)]">{s.name}</p>
+                  <p className="text-[color:var(--color-ink-soft)]">{s.students}</p>
+                  <p className="text-[color:var(--color-ink-soft)]">{s.outcome}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+
+        <Section
+          number="09"
+          eyebrow="Modelo de expansión"
+          title="Piloto, consolidación, escala."
+        >
+          <ol className="space-y-6">
+            {expansion.map((e) => (
+              <li
+                key={e.phase}
+                className="glass-card grid grid-cols-1 gap-4 rounded-2xl p-8 md:grid-cols-4"
+              >
+                <div>
+                  <p className="eyebrow">{e.when}</p>
+                  <h3 className="mt-3 font-serif text-2xl">{e.phase}</h3>
+                </div>
+                <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] md:col-span-3">
+                  {e.what}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section
+          number="10"
+          eyebrow="Por qué juntos"
+          title="Producto y operación. Ejecución y red."
+        >
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {team.map((m) => (
+              <article key={m.who} className="glass-card flex flex-col rounded-2xl p-8">
+                <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)]">
+                  {m.role}
+                </p>
+                <h3 className="mt-3 font-serif text-3xl">{m.who}</h3>
+                <ul className="mt-6 space-y-3 text-base leading-relaxed text-[color:var(--color-ink-soft)]">
+                  {m.items.map((it) => (
+                    <li key={it} className="flex gap-3">
+                      <span
+                        aria-hidden
+                        className="mt-3 inline-block h-px w-5 flex-shrink-0 bg-[color:var(--color-accent)]"
+                      />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          number="11"
+          eyebrow="Lo que no sabemos todavía"
+          title="Cuatro preguntas honestas."
+        >
+          <ol className="space-y-3">
+            {unknowns.map((u, i) => (
+              <li key={u} className="glass-card flex gap-6 rounded-2xl px-6 py-6 sm:px-8">
+                <span className="font-serif text-2xl text-[color:var(--color-accent)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
+                  {u}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+
+        <Section
+          number="12"
+          eyebrow="Próximo paso"
+          title="Cuatro semanas para una decisión informada."
+        >
+          <ol className="space-y-3">
+            {nextSteps.map((s) => (
+              <li
+                key={s.when}
+                className="glass-card grid grid-cols-1 gap-4 rounded-2xl p-6 md:grid-cols-4"
+              >
+                <p className="font-serif text-2xl text-[color:var(--color-ink)]">{s.when}</p>
+                <p className="text-base leading-relaxed text-[color:var(--color-ink-soft)] md:col-span-3">
+                  {s.what}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-12 max-w-2xl text-[color:var(--color-ink-soft)]">
+            Inversión total para la decisión: 500 € de taller piloto + tiempo de los dos. Resultado:
+            datos reales para decidir si seguimos, pivotamos o paramos.
+          </p>
+        </Section>
+
+        <footer className="border-t border-[color:var(--color-border)] py-12">
+          <Container>
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+              <p className="font-serif text-xl">
+                Academia <span className="text-[color:var(--color-accent)]">IA</span>
+              </p>
+              <p className="eyebrow">Documento confidencial · Mayo 2026</p>
+            </div>
+          </Container>
+        </footer>
+      </main>
+    </>
   );
 }

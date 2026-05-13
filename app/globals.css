@@ -1,28 +1,49 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-paper: #fafaf7;
-  --color-ink: #0a0a0a;
-  --color-ink-soft: #1a1a1a;
-  --color-muted: #6b6b66;
-  --color-line: #e8e6df;
-  --color-accent: #b85a3a;
-  --color-accent-soft: #d68b6f;
+  --color-bg: #080C14;
+  --color-bg-end: #0D1117;
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-surface-strong: rgba(255, 255, 255, 0.07);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.12);
 
-  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --color-ink: #F0EEE9;
+  --color-ink-soft: rgba(240, 238, 233, 0.78);
+  --color-muted: rgba(240, 238, 233, 0.5);
+
+  --color-accent: #A8C5A0;
+  --color-accent-soft: rgba(168, 197, 160, 0.5);
+  --color-accent-bg: rgba(168, 197, 160, 0.15);
+  --color-accent-bg-hover: rgba(168, 197, 160, 0.25);
+  --color-accent-border: rgba(168, 197, 160, 0.4);
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: var(--color-bg);
+    color-scheme: dark;
   }
 
   body {
-    background: var(--color-paper);
+    min-height: 100dvh;
+    background:
+      radial-gradient(
+        1200px circle at 50% -10%,
+        rgba(168, 197, 160, 0.06),
+        transparent 60%
+      ),
+      linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-end) 100%);
+    background-attachment: fixed;
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -31,19 +52,33 @@
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
     font-weight: 400;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
     color: var(--color-ink);
   }
 
   ::selection {
-    background: var(--color-accent);
-    color: var(--color-paper);
+    background: var(--color-accent-bg-hover);
+    color: var(--color-ink);
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-muted);
   }
 }
 
 @layer utilities {
   .container-prose {
-    max-width: 72rem;
+    max-width: 75rem;
     margin-inline: auto;
     padding-inline: 1.5rem;
   }
@@ -56,16 +91,140 @@
 
   .rule {
     height: 1px;
-    background: var(--color-line);
+    background: var(--color-border);
     width: 100%;
   }
 
+  .hairline {
+    border-color: var(--color-border);
+  }
+
+  .glass {
+    background: var(--color-surface);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-strong {
+    background: var(--color-surface-strong);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--color-border-strong);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-card {
+    background: var(--color-surface);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-glass);
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-border-strong);
+    transform: translateY(-2px);
+  }
+
+  .glass-nav {
+    background: rgba(8, 12, 20, 0.8);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--color-accent);
+    background: var(--color-accent-bg);
+    border: 1px solid var(--color-accent-border);
+    border-radius: 0.5rem;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent-bg-hover);
+    border-color: rgba(168, 197, 160, 0.55);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-ink-soft);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.125rem;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .btn-ghost:hover {
+    color: var(--color-ink);
+    border-color: var(--color-accent-border);
+  }
+
+  .input-glass {
+    width: 100%;
+    background: var(--color-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--color-ink);
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .input-glass:focus {
+    outline: none;
+    border-color: var(--color-accent-border);
+    background: var(--color-surface-strong);
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--color-muted);
+    font-weight: 400;
+  }
+
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        700px circle at 50% 30%,
+        rgba(168, 197, 160, 0.08),
+        transparent 65%
+      );
+  }
+
   .fade-in {
-    animation: fadeIn 700ms ease-out both;
+    animation: fadeIn 900ms ease-out both;
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
