@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const variants = [
-  "¿Quién le está enseñando a usarla — y a desconfiar de ella?",
+  "¿Quién enseña a tu hijo a usarla — y a desconfiar de ella?",
   "¿Llevas meses entre cursos que no terminas y herramientas que ya cambiaron?",
   "¿Tu equipo la usa con criterio — o solo con acceso?",
 ];
