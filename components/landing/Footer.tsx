@@ -1,13 +1,25 @@
 export function Footer() {
   return (
-    <footer className="border-t border-[color:var(--color-line)] py-10">
+    <footer data-section-theme="dark" className="theme-dark" style={{ paddingBlock: "4rem" }}>
       <div className="container-prose">
-        <p className="text-center text-sm text-[color:var(--color-muted)]">
-          Academia IA · España · 2026 ·{" "}
-          <a href="mailto:hola@academia-ia.es" className="btn-ghost">
+        <div
+          className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between"
+          style={{ borderTop: "1px solid var(--rule)", paddingTop: "2.5rem" }}
+        >
+          <div>
+            <p className="font-serif text-xl">Academia IA</p>
+            <p className="mt-2 text-xs" style={{ color: "var(--text-mute)" }}>
+              Un proyecto en desarrollo · España · 2026
+            </p>
+          </div>
+          <a
+            href="mailto:hola@academia-ia.es"
+            className="text-sm"
+            style={{ color: "var(--text-soft)", borderBottom: "1px solid var(--rule)" }}
+          >
             hola@academia-ia.es
           </a>
-        </p>
+        </div>
       </div>
     </footer>
   );

@@ -1,17 +1,33 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
+type Variant = "compact" | "full";
+type Segment = "padre" | "profesional" | "empresa";
+
+const segmentOptions: { value: Segment; label: string }[] = [
+  { value: "padre", label: "Soy padre / madre" },
+  { value: "profesional", label: "Soy profesional" },
+  { value: "empresa", label: "Represento a una empresa" },
+];
+
 export function WaitlistForm({
-  submitText = "Quiero plaza",
+  variant = "compact",
+  submitText = "Apuntarme",
   source = "default",
 }: {
+  variant?: Variant;
   submitText?: string;
   source?: string;
 }) {
+  const reduced = useReducedMotion();
   const [email, setEmail] = useState("");
+  const [segment, setSegment] = useState<Segment>("padre");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const compact = variant === "compact";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -23,7 +39,7 @@ export function WaitlistForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email.trim().toLowerCase(),
-          segment: source,
+          segment: compact ? source : segment,
         }),
       });
       if (!res.ok) {
@@ -40,17 +56,46 @@ export function WaitlistForm({
 
   if (status === "ok") {
     return (
-      <div className="card px-6 py-7 fade-in">
-        <p className="font-serif text-2xl text-[color:var(--color-ink)]">Te avisaremos.</p>
-        <p className="mt-2 text-sm text-[color:var(--color-muted)]">
+      <motion.div
+        initial={reduced ? false : { opacity: 0, y: 8 }}
+        animate={reduced ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="card p-7"
+      >
+        <p className="font-serif text-2xl">Te avisaremos.</p>
+        <p className="lede mt-2 text-sm">
           Cuando abramos inscripciones recibirás un correo. No te escribiremos por nada más.
         </p>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-3" noValidate>
+    <form onSubmit={onSubmit} className="space-y-4" noValidate>
+      {!compact && (
+        <fieldset className="flex flex-wrap gap-2">
+          <legend className="sr-only">Soy</legend>
+          {segmentOptions.map((opt) => {
+            const active = segment === opt.value;
+            return (
+              <label key={opt.value} className="cursor-pointer">
+                <input
+                  type="radio"
+                  name="segment"
+                  value={opt.value}
+                  checked={active}
+                  onChange={() => setSegment(opt.value)}
+                  className="sr-only"
+                />
+                <span className="pill" data-active={active}>
+                  {opt.label}
+                </span>
+              </label>
+            );
+          })}
+        </fieldset>
+      )}
+
       <div className="flex flex-col gap-3 sm:flex-row">
         <input
           type="email"
@@ -59,20 +104,20 @@ export function WaitlistForm({
           placeholder="tu@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="input-clean flex-1"
+          className="input flex-1"
         />
-        <button type="submit" disabled={status === "loading"} className="btn-primary">
+        <button type="submit" disabled={status === "loading"} className="btn">
           {status === "loading" ? "Enviando…" : submitText}
         </button>
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-[color:var(--color-accent)]" role="alert">
+        <p style={{ color: "var(--color-accent)" }} className="text-sm" role="alert">
           {errorMessage ?? "No se pudo enviar."}
         </p>
       )}
-      <p className="text-xs text-[color:var(--color-muted)]">
-        Sin spam. Solo te escribimos para avisarte de la apertura.
+      <p className="text-xs" style={{ color: "var(--text-mute)" }}>
+        Sin spam. Solo te escribiremos para avisar de la apertura.
       </p>
     </form>
   );

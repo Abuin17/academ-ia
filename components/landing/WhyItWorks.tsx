@@ -1,18 +1,41 @@
+import { Reveal } from "@/components/motion/Reveal";
+
 export function WhyItWorks() {
   return (
-    <section className="border-t border-[color:var(--color-line)] py-28 sm:py-36 md:py-40">
+    <section data-section-theme="dark" className="theme-dark section">
       <div className="container-prose">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="font-serif text-3xl leading-[1.1] text-[color:var(--color-ink)] sm:text-4xl md:text-[3.25rem]">
-            Las herramientas de IA cambian cada tres meses.
-          </p>
-          <p className="mt-3 font-serif text-3xl italic leading-[1.1] text-[color:var(--color-ink-soft)] sm:text-4xl md:text-[3.25rem]">
-            La capacidad de evaluarlas, no.
-          </p>
-          <p className="mx-auto mt-10 max-w-xl text-sm leading-relaxed text-[color:var(--color-muted)] sm:text-base">
-            Enseñamos a pensar con IA, no a usar herramientas concretas. Cuando cambien — y
-            cambiarán — nuestros alumnos ya sabrán qué hacer.
-          </p>
+        <div className="mx-auto max-w-4xl text-center">
+          <Reveal>
+            <p
+              className="font-serif"
+              style={{
+                fontSize: "clamp(2.4rem, 5vw, 4.25rem)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.025em",
+              }}
+            >
+              Las herramientas de IA cambian cada tres meses.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p
+              className="mt-4 font-serif italic"
+              style={{
+                fontSize: "clamp(2.4rem, 5vw, 4.25rem)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.025em",
+                color: "var(--text-soft)",
+              }}
+            >
+              La capacidad de evaluarlas, no.
+            </p>
+          </Reveal>
+          <Reveal delay={0.5}>
+            <p className="lede mx-auto mt-12 max-w-xl">
+              Enseñamos a pensar con IA, no a usar herramientas concretas. Cuando cambien — y
+              cambiarán — nuestros alumnos ya sabrán qué hacer.
+            </p>
+          </Reveal>
         </div>
       </div>
     </section>

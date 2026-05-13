@@ -1,25 +1,89 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { RevealWords } from "@/components/motion/RevealWords";
+import { WaitlistForm } from "./WaitlistForm";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 export function Hero() {
+  const reduced = useReducedMotion();
+
   return (
-    <section className="px-6 pt-32 pb-28 sm:pt-40 sm:pb-32 md:pt-48 md:pb-40">
-      <div className="container-prose">
-        <div className="mx-auto max-w-3xl text-center fade-in">
-          <h1 className="font-serif text-[2.4rem] leading-[1.05] tracking-tight text-[color:var(--color-ink)] sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-            El mundo que hereda tu hijo ya funciona con IA.
+    <section
+      data-section-theme="dark"
+      className="theme-dark relative flex items-center justify-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="container-prose w-full" style={{ paddingBlock: "9rem 6rem" }}>
+        <div className="mx-auto max-w-[58rem] text-center">
+          <motion.p
+            className="eyebrow"
+            initial={reduced ? false : { opacity: 0, y: 8 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE, delay: 0.2 }}
+          >
+            Academia IA · España · 2026
+          </motion.p>
+
+          <h1 className="display mt-10">
+            <RevealWords
+              text="El mundo que hereda tu hijo ya funciona con IA."
+              startDelay={0.5}
+              immediate
+            />
+            <br />
+            <RevealWords
+              text="¿Quién le está enseñando a pensar con ella?"
+              italicWords={[
+                "¿quién",
+                "le",
+                "está",
+                "enseñando",
+                "a",
+                "pensar",
+                "con",
+                "ella?",
+              ]}
+              startDelay={1.3}
+              staggerDelay={0.04}
+              immediate
+            />
           </h1>
-          <p className="mt-4 font-serif text-[1.85rem] italic leading-[1.15] text-[color:var(--color-ink-soft)] sm:text-4xl md:text-5xl lg:text-[3.5rem]">
-            ¿Quién le está enseñando a pensar con ella?
-          </p>
-          <p className="mt-10 text-base text-[color:var(--color-ink-soft)] sm:text-lg">
+
+          <motion.div
+            aria-hidden
+            initial={reduced ? false : { width: 0, opacity: 0 }}
+            animate={reduced ? undefined : { width: 80, opacity: 1 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 2.0 }}
+            style={{
+              height: 1,
+              background: "var(--rule)",
+              margin: "2.5rem auto 0",
+            }}
+          />
+
+          <motion.p
+            className="lede mx-auto mt-10 max-w-xl"
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE, delay: 2.3 }}
+          >
             Academia IA — formación presencial en España. Para niños, jóvenes y profesionales.
-          </p>
-          <div className="mt-12 flex flex-col items-center gap-3">
-            <a href="#lista" className="btn-primary">
-              Apúntame a la lista de espera
-            </a>
-            <p className="text-xs text-[color:var(--color-muted)]">
-              Abrimos en Granada primero. Después, en más ciudades.
-            </p>
-          </div>
+          </motion.p>
+
+          <motion.div
+            className="mx-auto mt-10 max-w-xl"
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: EASE, delay: 2.6 }}
+          >
+            <WaitlistForm
+              variant="compact"
+              submitText="Apuntarme a la lista de espera"
+              source="hero"
+            />
+          </motion.div>
         </div>
       </div>
     </section>

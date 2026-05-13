@@ -1,30 +1,31 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  variable: "--font-instrument",
   display: "swap",
-  weight: ["300", "400", "500", "600"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
-  weight: ["300", "400", "500"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
   title: "Academia IA — Aprende a razonar con IA",
   description:
-    "La primera red de academias de IA en España. Presencial. Para niños, jóvenes y profesionales.",
+    "Academia IA — formación presencial en España. Para niños, jóvenes y profesionales.",
   metadataBase: new URL("https://academ-ia.vercel.app"),
   openGraph: {
     title: "Academia IA",
     description:
-      "Aprende a razonar con IA. No a seguir tutoriales. Formación presencial en España.",
+      "Academia IA — formación presencial en España. Para niños, jóvenes y profesionales.",
     type: "website",
   },
   robots: { index: true, follow: true },
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html lang="es" className={`${instrument.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );

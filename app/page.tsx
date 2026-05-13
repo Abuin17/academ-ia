@@ -1,3 +1,5 @@
+import { Nav } from "@/components/Nav";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Closing } from "@/components/landing/Closing";
 import { Families } from "@/components/landing/Families";
 import { Footer } from "@/components/landing/Footer";
@@ -8,14 +10,18 @@ import { WhyItWorks } from "@/components/landing/WhyItWorks";
 
 export default function HomePage() {
   return (
-    <main>
-      <Hero />
-      <Problem />
-      <Families />
-      <Professionals />
-      <WhyItWorks />
-      <Closing />
-      <Footer />
-    </main>
+    <>
+      <ScrollProgress />
+      <Nav />
+      <main>
+        <Hero />
+        <Problem />
+        <Families />
+        <Professionals />
+        <WhyItWorks />
+        <Closing />
+        <Footer />
+      </main>
+    </>
   );
 }

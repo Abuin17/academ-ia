@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/motion/Reveal";
+
 const blocks = [
   {
     tag: "8 – 12 años",
@@ -16,29 +18,49 @@ const blocks = [
 
 export function Families() {
   return (
-    <section className="border-t border-[color:var(--color-line)] py-24 sm:py-32">
+    <section data-section-theme="dark" className="theme-dark section">
       <div className="container-prose">
-        <p className="eyebrow">Para familias</p>
-        <h2 className="mt-6 max-w-3xl font-serif text-3xl leading-[1.1] sm:text-4xl md:text-5xl">
-          Que tu hijo no aprenda IA solo en YouTube.
-        </h2>
+        <Reveal>
+          <p className="eyebrow">Para familias</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="h2 mt-6 max-w-3xl">
+            Que tu hijo no aprenda IA solo en YouTube.
+          </h2>
+        </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {blocks.map((b) => (
-            <article key={b.tag} className="card flex flex-col p-8 sm:p-10">
-              <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--color-accent)]">
-                {b.tag}
-              </p>
-              <h3 className="mt-5 font-serif text-2xl leading-snug text-[color:var(--color-ink)] sm:text-3xl">
-                {b.title}
-              </h3>
-              <p className="mt-6 text-base leading-relaxed text-[color:var(--color-ink-soft)] sm:text-lg">
-                {b.description}
-              </p>
-              <p className="mt-10 border-t border-[color:var(--color-line)] pt-5 text-sm text-[color:var(--color-muted)]">
-                {b.details.join(" · ")}
-              </p>
-            </article>
+        <div className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {blocks.map((b, i) => (
+            <Reveal key={b.tag} delay={i * 0.15} y={40} duration={0.7}>
+              <article className="card flex h-full flex-col" style={{ padding: "2.5rem" }}>
+                <span className="pill self-start">{b.tag}</span>
+                <h3 className="mt-7 font-serif" style={{ fontSize: "1.85rem", lineHeight: 1.15 }}>
+                  {b.title}
+                </h3>
+                <p className="lede mt-6" style={{ color: "var(--text-soft)" }}>
+                  {b.description}
+                </p>
+                <ul className="mt-auto pt-10 space-y-2">
+                  {b.details.map((d) => (
+                    <li key={d} className="flex items-baseline gap-3 text-sm" style={{ color: "var(--text-soft)" }}>
+                      <span
+                        aria-hidden
+                        style={{
+                          display: "inline-block",
+                          width: 5,
+                          height: 5,
+                          borderRadius: 999,
+                          background: "var(--color-accent)",
+                          flexShrink: 0,
+                          transform: "translateY(-2px)",
+                        }}
+                      />
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

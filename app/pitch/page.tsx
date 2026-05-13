@@ -193,8 +193,8 @@ const nextSteps = [
 
 export default function PitchPage() {
   return (
-    <>
-      <Nav variant="pitch" />
+    <div className="theme-dark">
+      <Nav />
       <main>
         <section className="py-20 sm:py-28">
           <Container>
@@ -530,6 +530,6 @@ export default function PitchPage() {
           </Container>
         </footer>
       </main>
-    </>
+    </div>
   );
 }
