@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { RevealWords } from "@/components/motion/RevealWords";
-import { WaitlistForm } from "./WaitlistForm";
+import { RotatingSecondLine } from "./RotatingSecondLine";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -18,7 +18,6 @@ export function Hero() {
       className="theme-dark relative flex items-center justify-center overflow-hidden"
       style={{ minHeight: "100vh" }}
     >
-      {/* Ambient gradients */}
       <motion.div
         aria-hidden
         initial={reduced ? false : { opacity: 0 }}
@@ -32,7 +31,6 @@ export function Hero() {
             "radial-gradient(900px circle at 50% -10%, rgba(201,169,110,0.07), transparent 55%), radial-gradient(1100px circle at 100% 110%, rgba(110,120,160,0.04), transparent 60%)",
         }}
       />
-      {/* Grain */}
       <div
         aria-hidden
         style={{
@@ -47,7 +45,7 @@ export function Hero() {
       />
 
       <div className="container-prose relative w-full" style={{ paddingBlock: "9rem 6rem" }}>
-        <div className="mx-auto max-w-[60rem] text-center">
+        <div className="mx-auto max-w-[62rem] text-center">
           <motion.p
             className="eyebrow"
             initial={reduced ? false : { opacity: 0, filter: "blur(6px)" }}
@@ -59,29 +57,23 @@ export function Hero() {
 
           <h1 className="display mt-10">
             <RevealWords
-              text="El mundo que hereda tu hijo ya funciona con IA."
+              text="El mundo ya funciona con IA."
               startDelay={0.55}
-              staggerDelay={0.055}
-              immediate
-            />
-            <br />
-            <RevealWords
-              text="¿Quién le está enseñando a pensar con ella?"
-              italicWords={[
-                "¿quién",
-                "le",
-                "está",
-                "enseñando",
-                "a",
-                "pensar",
-                "con",
-                "ella?",
-              ]}
-              startDelay={1.35}
-              staggerDelay={0.045}
+              staggerDelay={0.06}
               immediate
             />
           </h1>
+
+          <p
+            className="mt-4 font-serif"
+            style={{
+              fontSize: "clamp(1.6rem, 3.6vw, 3rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            <RotatingSecondLine startDelay={1.4} />
+          </p>
 
           <motion.div
             aria-hidden
@@ -93,7 +85,7 @@ export function Hero() {
               width: 60,
               transformOrigin: "center",
               background: "rgba(201,169,110,0.35)",
-              margin: "2.75rem auto 0",
+              margin: "3rem auto 0",
             }}
           />
 
@@ -103,30 +95,26 @@ export function Hero() {
             animate={reduced ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASE, delay: 2.25 }}
           >
-            La primera red de academias de IA en España. Presencial. Para niños, jóvenes y
-            profesionales.
+            Academia IA — formación presencial en España. Para niños, jóvenes y profesionales.
           </motion.p>
 
           <motion.div
-            className="mx-auto mt-10 max-w-xl"
+            className="mt-14"
             initial={reduced ? false : { opacity: 0, y: 12, filter: "blur(8px)" }}
             animate={reduced ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.7, ease: EASE, delay: 2.5 }}
           >
-            <WaitlistForm
-              variant="compact"
-              submitText="Apuntarme a la lista"
-              source="hero"
-              wrap
-            />
+            <a href="#lista" className="btn">
+              Apúntame a la lista de espera
+            </a>
           </motion.div>
 
           <motion.p
-            className="mx-auto mt-6 text-xs"
+            className="mx-auto mt-5 text-xs"
             style={{ color: "var(--text-mute)" }}
             initial={reduced ? false : { opacity: 0 }}
             animate={reduced ? undefined : { opacity: 1 }}
-            transition={{ duration: 0.4, ease: EASE, delay: 2.8 }}
+            transition={{ duration: 0.4, ease: EASE, delay: 2.85 }}
           >
             Abrimos en Granada primero. Después, en más ciudades.
           </motion.p>
