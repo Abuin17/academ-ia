@@ -57,8 +57,8 @@ export function Nav() {
     : "transparent";
   const textColor = isDark ? "#F0EDE6" : "#1A1A1A";
   const softColor = isDark
-    ? "rgba(240,237,230,0.55)"
-    : "#8A8A82";
+    ? "rgba(240,237,230,0.72)"
+    : "#5C594E";
 
   return (
     <header
