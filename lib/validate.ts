@@ -10,3 +10,10 @@ export function normalizeSegment(value: unknown): string {
   }
   return "unspecified";
 }
+
+export function normalizeCity(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const trimmed = value.trim();
+  if (trimmed.length === 0 || trimmed.length > 80) return null;
+  return trimmed;
+}

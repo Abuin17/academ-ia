@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ensureWaitlistTable, sql } from "@/lib/db";
-import { isValidEmail, normalizeSegment } from "@/lib/validate";
+import { isValidEmail, normalizeCity, normalizeSegment } from "@/lib/validate";
 
 export const runtime = "nodejs";
 
@@ -12,10 +12,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "JSON inválido" }, { status: 400 });
   }
 
-  const { email, segment } = (body ?? {}) as { email?: unknown; segment?: unknown };
+  const { email, segment, city } = (body ?? {}) as {
+    email?: unknown;
+    segment?: unknown;
+    city?: unknown;
+  };
 
   if (!isValidEmail(email)) {
     return NextResponse.json({ error: "Email inválido" }, { status: 400 });
+  }
+
+  const cleanCity = normalizeCity(city);
+  if (!cleanCity) {
+    return NextResponse.json({ error: "Indica tu ciudad" }, { status: 400 });
   }
 
   if (!process.env.DATABASE_URL) {
@@ -25,9 +34,11 @@ export async function POST(req: Request) {
   try {
     await ensureWaitlistTable();
     await sql`
-      INSERT INTO waitlist (email, segment)
-      VALUES (${email.toLowerCase()}, ${normalizeSegment(segment)})
-      ON CONFLICT (email) DO NOTHING
+      INSERT INTO waitlist (email, segment, city)
+      VALUES (${email.toLowerCase()}, ${normalizeSegment(segment)}, ${cleanCity})
+      ON CONFLICT (email) DO UPDATE SET
+        segment = EXCLUDED.segment,
+        city = EXCLUDED.city
     `;
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (err) {

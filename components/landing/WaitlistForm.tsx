@@ -25,6 +25,7 @@ export function WaitlistForm({
 }) {
   const reduced = useReducedMotion();
   const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
   const [segment, setSegment] = useState<Segment>("padre");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -41,6 +42,7 @@ export function WaitlistForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: email.trim().toLowerCase(),
+          city: city.trim(),
           segment: compact ? source : segment,
         }),
       });
@@ -50,6 +52,7 @@ export function WaitlistForm({
       }
       setStatus("ok");
       setEmail("");
+      setCity("");
     } catch (err) {
       setStatus("error");
       setErrorMessage(err instanceof Error ? err.message : "Error desconocido");
@@ -101,7 +104,7 @@ export function WaitlistForm({
         </fieldset>
       )}
 
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <input
           type="email"
           required
@@ -109,12 +112,25 @@ export function WaitlistForm({
           placeholder="tu@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="input flex-1"
+          className="input"
+          aria-label="Email"
         />
-        <button type="submit" disabled={status === "loading"} className="btn">
-          {status === "loading" ? "Enviando…" : submitText}
-        </button>
+        <input
+          type="text"
+          required
+          autoComplete="address-level2"
+          placeholder="Tu ciudad (ej. Granada)"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          className="input"
+          aria-label="Ciudad de interés"
+          maxLength={80}
+        />
       </div>
+
+      <button type="submit" disabled={status === "loading"} className="btn w-full">
+        {status === "loading" ? "Enviando…" : submitText}
+      </button>
 
       {status === "error" && (
         <p style={{ color: "var(--color-accent)" }} className="text-sm" role="alert">
@@ -122,7 +138,7 @@ export function WaitlistForm({
         </p>
       )}
       <p className="text-xs" style={{ color: "var(--text-mute)" }}>
-        Sin spam. Solo te escribiremos para avisar de la apertura.
+        Sin spam. Solo te escribiremos cuando abramos cerca de ti.
       </p>
     </form>
   );

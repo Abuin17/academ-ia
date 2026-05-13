@@ -24,6 +24,7 @@ export async function ensureWaitlistTable() {
       created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )
   `;
+  await sql`ALTER TABLE waitlist ADD COLUMN IF NOT EXISTS city TEXT`;
   initialized = true;
 }
 
