@@ -1,5 +1,7 @@
 User-agent: *
-Disallow: /por-que
-Disallow: /por-que/
+Allow: /
 
-# El resto del site (landing pública) sí es indexable.
+# TEMPORAL: bloqueo de /por-que desactivado para revisión (Claude / crawlers).
+# Restaurar antes de lanzar:
+# Disallow: /por-que
+# Disallow: /por-que/

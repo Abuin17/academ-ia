@@ -3,22 +3,8 @@ import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "AI Sapiens",
-  // Genera: <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-  robots: {
-    index: false,
-    follow: false,
-    noarchive: true,
-    nosnippet: true,
-    noimageindex: true,
-    googleBot: {
-      index: false,
-      follow: false,
-      noimageindex: true,
-      "max-snippet": 0,
-      "max-image-preview": "none",
-      "max-video-preview": 0,
-    },
-  },
+  // TEMPORAL: indexable para revisión (Claude / crawlers). Restaurar noindex antes de lanzar.
+  robots: { index: true, follow: true },
   // Sin Open Graph, sin Twitter Cards, sin description que aporte señal a buscadores.
   description: null,
   openGraph: null,

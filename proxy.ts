@@ -21,6 +21,14 @@ import { ACCESS_COOKIE, PROTECTED_ROUTES } from "@/lib/por-que";
 
 const BASIC_AUTH_REALM = "Academia IA";
 
+/**
+ * TEMPORAL: desactiva Basic Auth para que crawlers y fetch externo (Claude)
+ * puedan leer el HTML. Poner `false` antes de lanzar, o usar env
+ * `TEMP_CRAWLER_ACCESS=true` en Vercel en lugar de tocar código.
+ */
+const SKIP_BASIC_AUTH =
+  process.env.TEMP_CRAWLER_ACCESS === "true" || true; // TODO: quitar `|| true`
+
 function basicAuthChallenge(): NextResponse {
   return new NextResponse("Authentication required", {
     status: 401,
@@ -31,6 +39,8 @@ function basicAuthChallenge(): NextResponse {
 }
 
 function isBasicAuthOk(req: NextRequest): boolean {
+  if (SKIP_BASIC_AUTH) return true;
+
   const expected = process.env.BASIC_AUTH_PASS;
   if (!expected) return true;
 
