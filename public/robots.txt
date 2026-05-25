@@ -1,7 +1,20 @@
+# TEMPORAL: acceso abierto para revisión (Claude / crawlers). Restaurar Disallow antes de lanzar.
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
 User-agent: *
 Allow: /
 
-# TEMPORAL: bloqueo de /por-que desactivado para revisión (Claude / crawlers).
 # Restaurar antes de lanzar:
 # Disallow: /por-que
 # Disallow: /por-que/

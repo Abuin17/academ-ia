@@ -70,6 +70,7 @@ export function RevealWords({
             >
               {word}
             </motion.span>
+            {i < words.length - 1 ? " " : null}
           </span>
         );
       })}
