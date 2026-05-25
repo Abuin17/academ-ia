@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /por-que
+Disallow: /por-que/
+
+# El resto del site (landing pública) sí es indexable.

@@ -37,3 +37,18 @@ CREATE TABLE IF NOT EXISTS waitlist (
 - Tailwind CSS v4 (tokens en `app/globals.css`)
 - `@neondatabase/serverless` para Postgres
 - Fuentes via `next/font/google`: Fraunces (serif) + Inter (sans)
+
+## /por-que — microsite propuesta de valor AI Sapiens
+
+Site `/por-que` — propuesta de valor AI Sapiens. No indexable. Acceso a rutas privadas por contraseña. Variables de entorno requeridas: `INVESTOR_PASSWORD`, `OPERATOR_PASSWORD`.
+
+Rutas:
+
+- `/por-que` — cuerpo común público (siete secciones: apertura, oportunidad histórica, columna pedagógica, ejemplos narrados, diferenciación, ruta, bifurcación).
+- `/por-que/acceso` — formulario de contraseña con selector de ruta.
+- `/por-que/inversor` — ruta privada (cookie `ai-sapiens-access=inversor`).
+- `/por-que/operador` — ruta privada (cookie `ai-sapiens-access=operador`).
+
+Bloqueo de indexación: `public/robots.txt` bloquea `/por-que` y `app/por-que/layout.tsx` añade `noindex, nofollow, noarchive, nosnippet, noimageindex`. El resto del site (`/`, `/pitch`) mantiene su comportamiento de indexación previo.
+
+Gating: comparación directa contra `INVESTOR_PASSWORD` / `OPERATOR_PASSWORD` desde `app/por-que/acceso/actions.ts`. Cookie httpOnly de 30 días. Middleware en `middleware.ts` redirige a `/por-que/acceso` si la cookie no coincide.
