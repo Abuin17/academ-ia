@@ -209,7 +209,7 @@ export function ColumnaOperaciones() {
         <div className="mx-auto max-w-3xl text-center">
           <Reveal y={20}>
             <h2 className="h2" style={{ color: "var(--text)" }}>
-              No enseñamos herramientas. Enseñamos a pensar con ellas.
+              Las cinco operaciones
             </h2>
           </Reveal>
           <Reveal y={18} delay={0.1}>
@@ -221,8 +221,8 @@ export function ColumnaOperaciones() {
                 maxWidth: "44ch",
               }}
             >
-              Las herramientas cambiarán cada seis meses. Las operaciones
-              mentales que permiten convivir con ellas se quedan.
+              Una columna vertebral. Un orden deliberado. Lo que se queda
+              cuando las herramientas cambian.
             </p>
           </Reveal>
         </div>
@@ -285,11 +285,9 @@ export function ColumnaOperaciones() {
                 color: "var(--text-soft)",
               }}
             >
-              Cinco operaciones. Una columna vertebral. Y un orden específico:
-              el alumno no llega en blanco — llega ya usando IA sin criterio.
-              Por eso empezamos por{" "}
-              <span style={{ color: "var(--color-accent)" }}>Ver</span>, no por{" "}
-              <span style={{ color: "var(--color-accent)" }}>Crear</span>.
+              Cinco operaciones. Una columna. Y la primera vez que un programa
+              educativo se atreve a empezar por el principio que nadie quiere
+              empezar: por lo que el alumno ya está haciendo sin darse cuenta.
             </p>
           </Reveal>
         </div>
