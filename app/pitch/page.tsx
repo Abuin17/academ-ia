@@ -7,8 +7,7 @@ export const metadata = {
   title: "Academia IA — Pitch para cofundador",
   description:
     "Tesis, mercado, propuesta, números y plan de 4 semanas para arrancar una red de academias de IA en España.",
-  // TEMPORAL: indexable para revisión. Restaurar noindex antes de lanzar.
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
 };
 
 const competitors = [
