@@ -1,11 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 
+const ROUTES: { href: string; label: string }[] = [
+  { href: "/pitch", label: "Pitch" },
+  { href: "/por-que", label: "Por qué" },
+];
+
 export function Nav() {
+  const pathname = usePathname();
   const [theme, setTheme] = useState<Theme>("dark");
   const [scrolled, setScrolled] = useState(false);
 
@@ -93,8 +100,40 @@ export function Nav() {
             Academia IA
           </Link>
           <div className="flex items-center gap-7">
+            <nav
+              aria-label="Secciones principales"
+              className="hidden sm:flex items-center gap-6"
+            >
+              {ROUTES.map((r) => {
+                const active =
+                  pathname === r.href ||
+                  (r.href !== "/" && pathname?.startsWith(`${r.href}/`));
+                return (
+                  <Link
+                    key={r.href}
+                    href={r.href}
+                    aria-current={active ? "page" : undefined}
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "0.7rem",
+                      fontWeight: 500,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      color: active ? textColor : softColor,
+                      transition: "color 0.25s ease",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = textColor)}
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = active ? textColor : softColor)
+                    }
+                  >
+                    {r.label}
+                  </Link>
+                );
+              })}
+            </nav>
             <a
-              href="#lista"
+              href="/#lista"
               className="hidden sm:inline-flex"
               style={{
                 fontFamily: "var(--font-sans)",
@@ -111,7 +150,7 @@ export function Nav() {
               Lista de espera
             </a>
             <a
-              href="#lista"
+              href="/#lista"
               className="btn-outline"
             >
               Apuntarme
