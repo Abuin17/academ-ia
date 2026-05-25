@@ -9,9 +9,6 @@ import {
   EditorialSection,
 } from "@/components/por-que/EditorialPage";
 
-const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hola@aisapiens.es";
-
 const APORTA_CENTRO = [
   "Conocimiento de tus familias y su disposición a pagar por formación complementaria.",
   "Espacio físico (si aplica) y gestión de la convocatoria de grupos.",
@@ -306,12 +303,7 @@ export default function OperadorPage() {
           </EditorialParagraph>
         </EditorialSection>
 
-        <EditorialClosing
-          cta={{
-            href: `mailto:${CONTACT_EMAIL}?subject=AI%20Sapiens%20%E2%80%94%20Conversaci%C3%B3n%20con%20centro%20educativo`,
-            label: "Continuar la conversación",
-          }}
-        >
+        <EditorialClosing>
           AI Sapiens no busca convencerte de que esto funcionará en tu centro.
           Busca centros con criterio operativo que quieran validarlo con
           nosotros. Si tu centro es uno, hablamos.

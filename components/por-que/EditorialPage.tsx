@@ -119,7 +119,7 @@ export function EditorialClosing({
   cta,
 }: {
   children: ReactNode;
-  cta: { href: string; label: string };
+  cta?: { href: string; label: string };
 }) {
   return (
     <section
@@ -143,18 +143,20 @@ export function EditorialClosing({
               {children}
             </p>
           </Reveal>
-          <Reveal y={14} delay={0.15}>
-            <div style={{ marginTop: "2.4rem" }}>
-              <a
-                href={cta.href}
-                className="btn-outline"
-                style={{ display: "inline-flex", padding: "0.85rem 1.4rem", fontSize: "0.85rem" }}
-              >
-                {cta.label}
-                <span aria-hidden style={{ marginLeft: 8 }}>→</span>
-              </a>
-            </div>
-          </Reveal>
+          {cta ? (
+            <Reveal y={14} delay={0.15}>
+              <div style={{ marginTop: "2.4rem" }}>
+                <a
+                  href={cta.href}
+                  className="btn-outline"
+                  style={{ display: "inline-flex", padding: "0.85rem 1.4rem", fontSize: "0.85rem" }}
+                >
+                  {cta.label}
+                  <span aria-hidden style={{ marginLeft: 8 }}>→</span>
+                </a>
+              </div>
+            </Reveal>
+          ) : null}
         </div>
       </Container>
     </section>

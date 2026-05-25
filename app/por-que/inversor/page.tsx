@@ -7,9 +7,6 @@ import {
   EditorialSection,
 } from "@/components/por-que/EditorialPage";
 
-const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hola@aisapiens.es";
-
 export default function InversorPage() {
   return (
     <>
@@ -178,12 +175,7 @@ export default function InversorPage() {
           </EditorialParagraph>
         </EditorialSection>
 
-        <EditorialClosing
-          cta={{
-            href: `mailto:${CONTACT_EMAIL}?subject=AI%20Sapiens%20%E2%80%94%20Conversaci%C3%B3n%20de%20partnership`,
-            label: "Continuar la conversación",
-          }}
-        >
+        <EditorialClosing>
           Si lo anterior te resuena, la conversación siguiente no es sobre
           términos. Es sobre si crees que la ventana está abierta — y si crees
           que esto es lo que la ocupa.
